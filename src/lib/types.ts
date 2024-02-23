@@ -1,5 +1,3 @@
-import React from 'react';
-
 type Variant = React.ReactNode;
 type LoggerFunction = (variant: string) => void;
 
