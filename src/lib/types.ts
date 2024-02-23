@@ -1,6 +1,6 @@
 type Variant = React.ReactNode;
 type LoggerFunction = (variant: string) => void;
-export type VariantIdentifier = string;
+type VariantIdentifier = string;
 
 export enum StorageType {
   Local = 'local',

@@ -14,8 +14,8 @@ function App() {
     variantIdentifiers: ['withPreOnboardingScreen', 'withoutPreOnboardingScreen'],
   });
 
-  const logger = (variant: string) => {
-    console.log(`Current variant with component: ${variant}`);
+  const loggerForComponent = (variantForComponent: string) => {
+    console.log(`Current variant with component: ${variantForComponent}`);
   };
 
   return (
@@ -30,7 +30,7 @@ function App() {
         <Experiment
           weights={[10, 20, 70]}
           variants={[<div>Variant 1</div>, <div>Variant 2</div>, <div>Variant 3</div>]}
-          logger={logger}
+          logger={loggerForComponent}
           storageKey="experimentWithComponent"
           variantIdentifiers={['A', 'B', 'C']}
         />
