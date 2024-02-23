@@ -1,30 +1,69 @@
-# React + TypeScript + Vite
+# react-ab-tasty
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- 🏞️ Easy to Integrate: Simplifies the implementation of A/B testing in React projects
+- 🔍 Logging Support: Integrated logging capabilities for monitoring variant selection
+- 🔒 Storage flexibility: Supports both localStorage and sessionStorage for experiment state persistence.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Usage
 
-## Expanding the ESLint configuration
+> yarn add react-ab-tasty
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+```ts
+import React from 'react';
+import { useExperiment } from 'react-ab-tasty';
 
-- Configure the top-level `parserOptions` property like this:
+const MyComponent = () => {
+  const { ExperimentComponent } = useExperiment({
+    variants: [<VariantA />, <VariantB />], // React components for each variant
+    weights: [50, 50], // Probability weights for each variant
+    logger: console.log, // Optional logging function
+    storageType: 'local', // Optional, 'local' or 'session', defaults to 'local'
+    storageKey: 'experimentWin', // Optional, key used in storage, defaults to 'experimentWin'
+    enableLogging: false, // Optional, enables logging if true
+  });
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+  return (
+    <div>
+      {ExperimentComponent}
+    </div>
+  );
+};
+
+export default MyComponent;
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Configuration Options
+
+- **variants**: An array of React components representing each variant in the experiment
+- **weights**: Corresponding weights for each variant, indicating their selection probability
+- **logger**: A function for logging variant selection. Defaults to a no-op function if not provided
+- **storageType**: Specifies the type of web storage to use ('local' for localStorage or 'session' for sessionStorage). Defaults to 'local'
+- **storageKey**: The key under which the selected variant index is stored. Helps in persisting the experiment across sessions
+- **enableLogging**: If true, enables logging of the selected variant using the provided logger function
+
+
+### Types & Options
+
+```ts
+type Variant = React.ReactNode;
+type LoggerFunction = (variant: string) => void;
+
+enum StorageType {
+  Local = 'local',
+  Session = 'session',
+}
+
+interface UseExperimentProps {
+  weights: number[];
+  variants: Variant[];
+  logger: LoggerFunction;
+  storageType?: StorageType;
+  storageKey?: string;
+  enableLogging?: boolean;
+}
+
+interface UseExperimentResult {
+  ExperimentComponent: React.ReactNode;
+}
+```
