@@ -33,6 +33,7 @@ function App() {
           logger={loggerForComponent}
           storageKey="experimentWithComponent"
           variantIdentifiers={['A', 'B', 'C']}
+          enableLogging={true}
         />
       </div>
     </div>
