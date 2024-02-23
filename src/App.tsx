@@ -5,7 +5,7 @@ import { StorageType } from './lib/types';
 
 function App() {
   const { ExperimentComponent } = useExperiment({
-    weights: [0.5, 0.5],
+    weights: [50, 50],
     variants: [<div>Variant A</div>, <div>Variant B</div>],
     logger: (variant) => console.log(`User placed in group ${variant} from hook`),
     storageType: StorageType.Local,
