@@ -5,10 +5,11 @@ export const useExperiment = ({
   weights,
   variants,
   logger,
+  variantIdentifiers = variants.map((_, index) => index.toString()),
   storageType = StorageType.Local,
   storageKey = 'experimentWin',
   enableLogging = false,
-}: UseExperimentProps): UseExperimentResult => {
+}: UseExperimentProps & { variantIdentifiers?: string[] }): UseExperimentResult => {
   const [experimentState, setExperimentState] = useState<{
     isExperimentSelected: boolean;
     ExperimentComponent: ReactNode | null;
@@ -19,45 +20,56 @@ export const useExperiment = ({
 
   const getSelectedVariant = useCallback(() => {
     const storage = storageType === 'session' ? sessionStorage : localStorage;
-    let selectedVariant = parseInt(storage.getItem(storageKey) || '', 10);
+    const storedValue = storage.getItem(storageKey) || '';
+    let selectedVariantIndex = parseInt(storedValue, 10);
+    let selectedVariantIdentifier = storedValue;
 
-    if (!isNaN(selectedVariant) && selectedVariant < variants.length) {
-      return selectedVariant;
+    if (!isNaN(selectedVariantIndex) && selectedVariantIndex < variants.length) {
+      return variants[selectedVariantIndex];
+    } else if (variantIdentifiers.includes(storedValue)) {
+      selectedVariantIndex = variantIdentifiers.indexOf(storedValue);
+      return variants[selectedVariantIndex];
     }
 
     const totalWeight = weights.reduce((acc, current) => acc + current, 0);
     let randomNum = Math.random() * totalWeight;
-    selectedVariant = 0;
 
     for (let i = 0; i < weights.length; i++) {
       if (randomNum < weights[i]) {
-        selectedVariant = i;
+        selectedVariantIndex = i;
+        selectedVariantIdentifier = variantIdentifiers[i];
         break;
       }
       randomNum -= weights[i];
     }
 
-    storage.setItem(storageKey, selectedVariant.toString());
-    return selectedVariant;
-  }, [weights, variants, storageType, storageKey]);
+    storage.setItem(storageKey, selectedVariantIdentifier);
+    return variants[selectedVariantIndex];
+  }, [weights, variants, variantIdentifiers, storageType, storageKey]);
 
   useEffect(() => {
     if (experimentState.isExperimentSelected) {
       return;
     }
 
-    const selectedVariant = getSelectedVariant();
-    const ExperimentComponent = variants[selectedVariant];
+    const ExperimentComponent = getSelectedVariant();
 
     if (enableLogging) {
-      logger(`Variant ${selectedVariant}`);
+      logger(`Variant ${variantIdentifiers[variants.indexOf(ExperimentComponent)]}`);
     }
 
     setExperimentState({
       isExperimentSelected: true,
       ExperimentComponent,
     });
-  }, [experimentState.isExperimentSelected, getSelectedVariant, variants, enableLogging, logger]);
+  }, [
+    experimentState.isExperimentSelected,
+    getSelectedVariant,
+    variants,
+    variantIdentifiers,
+    enableLogging,
+    logger,
+  ]);
 
   return { ExperimentComponent: experimentState.ExperimentComponent };
 };

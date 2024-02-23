@@ -10,6 +10,7 @@ export const Experiment: React.FC<ExperimentProps> = ({
   storageType,
   storageKey,
   enableLogging,
+  variantIdentifiers,
 }) => {
   const { ExperimentComponent } = useExperiment({
     weights,
@@ -18,6 +19,7 @@ export const Experiment: React.FC<ExperimentProps> = ({
     storageType,
     storageKey,
     enableLogging,
+    variantIdentifiers,
   });
 
   return <>{ExperimentComponent}</>;
