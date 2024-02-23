@@ -1,5 +1,5 @@
-import { useExperiment } from './useExperiment';
-import { StorageType } from './types';
+import { useExperiment } from './lib/useExperiment';
+import { StorageType } from './lib/types';
 
 function App() {
   const { ExperimentComponent } = useExperiment({

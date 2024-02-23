@@ -1,2 +1,2 @@
-export { useExperiment } from './src/useExperiment';
-export type { StorageType, UseExperimentProps, UseExperimentResult } from './src/types';
+export { useExperiment } from './src/lib/useExperiment';
+export type { StorageType, UseExperimentProps, UseExperimentResult } from './src/lib/types';
