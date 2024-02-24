@@ -6,15 +6,16 @@ import { StorageType } from './lib/types';
 function App() {
   const { ExperimentComponent } = useExperiment({
     weights: [50, 50],
-    variants: [<div>Variant A</div>, <div>Variant B</div>],
+    variants: [<div>with pre onboarding screen</div>, <div>without pre onboarding screen</div>],
     logger: (variant) => console.log(`User placed in group ${variant} from hook`),
     storageType: StorageType.Local,
     storageKey: 'experimentWithHook',
     enableLogging: true,
+    variantIdentifiers: ['withPreOnboardingScreen', 'withoutPreOnboardingScreen'],
   });
 
-  const logger = (variant: string) => {
-    console.log(`Current variant with component: ${variant}`);
+  const loggerForComponent = (variantForComponent: string) => {
+    console.log(`Current variant with component: ${variantForComponent}`);
   };
 
   return (
@@ -29,8 +30,10 @@ function App() {
         <Experiment
           weights={[10, 20, 70]}
           variants={[<div>Variant 1</div>, <div>Variant 2</div>, <div>Variant 3</div>]}
-          logger={logger}
+          logger={loggerForComponent}
           storageKey="experimentWithComponent"
+          variantIdentifiers={['A', 'B', 'C']}
+          enableLogging={true}
         />
       </div>
     </div>

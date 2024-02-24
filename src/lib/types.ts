@@ -1,5 +1,6 @@
 type Variant = React.ReactNode;
 type LoggerFunction = (variant: string) => void;
+type VariantIdentifier = string;
 
 export enum StorageType {
   Local = 'local',
@@ -13,6 +14,7 @@ export interface UseExperimentProps {
   storageType?: StorageType;
   storageKey?: string;
   enableLogging?: boolean;
+  variantIdentifiers?: VariantIdentifier[];
 }
 
 export interface UseExperimentResult {
