@@ -17,7 +17,7 @@ const MyComponent = () => {
   const { ExperimentComponent } = useExperiment({
     variants: [<VariantA />, <VariantB />], // React components for each variant
     weights: [50, 50], // Probability weights for each variant
-    logger: logger: (variant) => console.log(`User placed in group ${variant} from hook`),, // Optional logging function
+    logger: logger: (variant) => console.log(`User placed in group ${variant} from hook`), // Optional logging function
     storageType: 'local', // Optional, 'local' or 'session', defaults to 'local'
     storageKey: 'experimentWin', // Optional, key used in storage, defaults to 'experimentWin'
     enableLogging: false, // Optional, enables logging if true
