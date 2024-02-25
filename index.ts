@@ -1,5 +1,5 @@
-import { useExperiment } from './src/lib/useExperiment';
-import { Experiment } from './src/lib/Experiment';
-import type { StorageType, UseExperimentProps, UseExperimentResult } from './src/lib/types';
+import { Experiment } from './lib/Experiment';
+import type { StorageType, UseExperimentProps, UseExperimentResult } from './lib/types';
+import { useExperiment } from './lib/useExperiment';
 
-export { useExperiment, Experiment, StorageType, UseExperimentProps, UseExperimentResult };
+export { Experiment, StorageType, UseExperimentProps, UseExperimentResult, useExperiment };
