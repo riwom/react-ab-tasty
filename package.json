@@ -6,13 +6,26 @@
   "main": "dist/index.umd.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
+  "description": "react-ab-tasty for easy A/B testing with dynamic rendering, persistent state, and logging",
+  "author": "Dmytro Barabash (https://tutizaraz.com)",
+  "homepage": "https://github.com/tutizaraz/react-ab-tasty",
+  "keywords": [
+    "react",
+    "typescript",
+    "ab test",
+    "ab testing",
+    "react-ab-test",
+    "react-ab-tasty"
+  ],
   "exports": {
     ".": {
       "import": "dist/index.es.js",
       "require": "dist/index.umd.js"
     }
   },
-  "files": ["/dist"],
+  "files": [
+    "/dist"
+  ],
   "publishConfig": {
     "access": "public"
   },
