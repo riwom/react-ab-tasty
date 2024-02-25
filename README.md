@@ -55,7 +55,11 @@ const MyComponent = () => {
         variants={[<div>Variant 1</div>, <div>Variant 2</div>, <div>Variant 3</div>]}
         logger={logger}
         storageKey="experimentWithComponent"
-        variantIdentifiers={['this is first variant', 'this is second variant']}
+        variantIdentifiers={[
+          'this is first variant',
+          'this is second variant',
+          'this is last variant',
+        ]}
       />
     </div>
   );
