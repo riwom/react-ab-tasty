@@ -1,7 +1,7 @@
-import { useExperiment } from './useExperiment';
 import { UseExperimentProps } from './types';
+import { useExperiment } from './useExperiment';
 
-interface ExperimentProps extends UseExperimentProps { }
+interface ExperimentProps extends UseExperimentProps {}
 
 export const Experiment: React.FC<ExperimentProps> = ({
   weights,

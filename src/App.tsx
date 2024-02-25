@@ -24,7 +24,7 @@ function App() {
         <div>Example with hook</div>
         {ExperimentComponent}
       </div>
-
+    
       <div>
         <div>Example with component</div>
         <Experiment
