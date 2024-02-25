@@ -1,12 +1,17 @@
-import { Experiment } from '../lib/Experiment';
-import { useExperiment } from '../lib/useExperiment';
-
+import { useEffect, useState } from 'react';
 import { StorageType } from '../lib/types';
+import { useExperiment } from '../lib/useExperiment';
+import './App.css';
 
 function App() {
+  const [storageValue, setStorageValue] = useState('');
+
   const { ExperimentComponent } = useExperiment({
     weights: [50, 50],
-    variants: [<div>with pre onboarding screen</div>, <div>without pre onboarding screen</div>],
+    variants: [
+      <div key="with">with pre onboarding screen</div>,
+      <div key="without">without pre onboarding screen</div>,
+    ],
     logger: (variant) => console.log(`User placed in group ${variant} from hook`),
     storageType: StorageType.Local,
     storageKey: 'experimentWithHook',
@@ -14,27 +19,29 @@ function App() {
     variantIdentifiers: ['withPreOnboardingScreen', 'withoutPreOnboardingScreen'],
   });
 
-  const loggerForComponent = (variantForComponent: string) => {
-    console.log(`Current variant with component: ${variantForComponent}`);
+  useEffect(() => {
+    const value = localStorage.getItem('experimentWithHook');
+    setStorageValue(value || 'No value stored');
+  }, []);
+
+  const clearStorage = () => {
+    localStorage.removeItem('experimentWithHook');
+    window.location.reload();
   };
 
   return (
-    <div>
-      <div>
+    <div className="app-container">
+      <div className="demo-section">
         <div>Example with hook</div>
         {ExperimentComponent}
       </div>
 
-      <div>
-        <div>Example with component</div>
-        <Experiment
-          weights={[10, 20, 70]}
-          variants={[<div>Variant 1</div>, <div>Variant 2</div>, <div>Variant 3</div>]}
-          logger={loggerForComponent}
-          storageKey="experimentWithComponent"
-          variantIdentifiers={['A', 'B', 'C']}
-          enableLogging={true}
-        />
+      <div className="control-section">
+        <button onClick={clearStorage}>Clear Storage</button>
+        <div>
+          <p>Stored Value: {storageValue}</p>
+          <p>Stored in: Local Storage</p>
+        </div>
       </div>
     </div>
   );

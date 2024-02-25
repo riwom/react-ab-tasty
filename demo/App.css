@@ -1,0 +1,34 @@
+.app-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.demo-section,
+.control-section {
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 8px;
+  width: 48%;
+}
+
+.control-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #ff385c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #f22e50;
+}
