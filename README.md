@@ -1,9 +1,10 @@
+[![SWUbanner](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner-direct-single.svg)](https://stand-with-ukraine.pp.ua/)
+
 # react-ab-tasty
 
 - 🏞️ Easy to Integrate: Simplifies the implementation of A/B testing in React projects
 - 🔍 Logging Support: Integrated logging capabilities for monitoring variant selection
 - 🔒 Storage flexibility: Supports both localStorage and sessionStorage for experiment state persistence.
-
 
 ## Usage
 
@@ -65,7 +66,6 @@ export default MyComponent;
 - **storageType**: Specifies the type of web storage to use ('local' for localStorage or 'session' for sessionStorage). Defaults to 'local'
 - **storageKey**: The key under which the selected variant index is stored. Helps in persisting the experiment across sessions
 - **enableLogging**: If true, enables logging of the selected variant using the provided logger function
-
 
 ### Types & Options
 
