@@ -1,7 +1,7 @@
-import { useExperiment } from './lib/useExperiment';
-import { Experiment } from './lib/Experiment';
+import { Experiment } from '../lib/Experiment';
+import { useExperiment } from '../lib/useExperiment';
 
-import { StorageType } from './lib/types';
+import { StorageType } from '../lib/types';
 
 function App() {
   const { ExperimentComponent } = useExperiment({
@@ -24,7 +24,7 @@ function App() {
         <div>Example with hook</div>
         {ExperimentComponent}
       </div>
-    
+
       <div>
         <div>Example with component</div>
         <Experiment

@@ -1,6 +1,6 @@
 import react from '@vitejs/plugin-react';
-import { defineConfig } from 'vite';
 import path from 'path';
+import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
