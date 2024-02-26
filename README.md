@@ -8,6 +8,8 @@
 - 🔍 Logging Support: Integrated logging capabilities for monitoring variant selection
 - 🔒 Storage flexibility: Supports both localStorage and sessionStorage for experiment state persistence.
 
+**[Solution for vanilla javascript](https://jsfiddle.net/g2doeajn/)**
+
 ## Usage
 
 ```shell
