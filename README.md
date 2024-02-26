@@ -104,3 +104,5 @@ interface UseExperimentResult {
   ExperimentComponent: React.ReactNode;
 }
 ```
+
+**This package has no relation to the product ab-tasty [AB Tasty](https://www.abtasty.com)**
