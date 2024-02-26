@@ -9,6 +9,10 @@
   "description": "react-ab-tasty for easy A/B testing with dynamic rendering, persistent state, and logging",
   "author": "Dmytro Barabash (https://tutizaraz.com)",
   "homepage": "https://github.com/tutizaraz/react-ab-tasty",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tutizaraz/react-ab-tasty"
+  },
   "keywords": [
     "react",
     "typescript",
